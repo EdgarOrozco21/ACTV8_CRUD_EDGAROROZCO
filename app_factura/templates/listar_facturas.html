@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Facturas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .btn { margin: 5px; padding: 5px 10px; text-decoration: none; color: white; }
+        .editar { background-color: #007BFF; }
+        .borrar { background-color: #DC3545; }
+        .agregar { background-color: #28A745; display: inline-block; margin: 10px 0; padding: 10px 15px; color: white; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Listado de Facturas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Factura</th>
+                <th>Fecha</th>
+                <th>Monto</th>
+                <th>Método de Pago</th>
+                <th>Cliente ID</th>
+                <th>Proyecto ID</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for factura in facturas %}
+            <tr>
+                <td>{{ factura.factura }}</td>
+                <td>{{ factura.fecha }}</td>
+                <td>{{ factura.monto }}</td>
+                <td>{{ factura.metodo_pago }}</td>
+                <td>{{ factura.cliente_id_cliente }}</td>
+                <td>{{ factura.proyecto_id_proyecto }}</td>
+                <td>
+                    <a href="/editar/{{ factura.id }}/" class="btn editar">Editar</a>
+                    <a href="/borrar/{{ factura.id }}/" class="btn borrar">Borrar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No hay facturas registradas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/agregar/" class="btn agregar">Agregar Factura</a>
+</body>
+</html>
